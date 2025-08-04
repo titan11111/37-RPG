@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ヒカリノオウコク - 魔石と子どもたちの冒険</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- タイトル画面 -->
+    <div id="titleScreen" class="screen">
+        <div class="title-container">
+            <h1 class="game-title">ヒカリノオウコク</h1>
+            <p class="subtitle">魔石と子どもたちの冒険</p>
+            <div class="title-menu">
+                <button class="menu-btn" onclick="startGame()">ぼうけんを はじめる</button>
+                <button class="menu-btn" onclick="showSettings()">せってい</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ゲーム画面 -->
+    <div id="gameScreen" class="screen hidden">
+        <!-- ゲームエリア -->
+        <div id="gameArea">
+            <!-- フィールド -->
+            <div id="field">
+                <!-- 街 -->
+                <div class="town" style="position: absolute; left: 80px; top: 80px;">
+                    <div class="building">🏠</div>
+                    <div class="building">🏪</div>
+                    <div class="building">⛪</div>
+                </div>
+                
+                <!-- 山 -->
+                <div class="mountain" style="position: absolute; left: 300px; top: 60px;">
+                    <div class="mountain-peak">⛰️</div>
+                    <div class="mountain-peak">🏔️</div>
+                </div>
+                
+                <!-- 川 -->
+                <div class="river" style="position: absolute; left: 0px; top: 200px; width: 400px; height: 40px; background: linear-gradient(90deg, #74b9ff, #0984e3); border-radius: 20px;"></div>
+                
+                <!-- 橋 -->
+                <div class="bridge" style="position: absolute; left: 160px; top: 190px; width: 80px; height: 60px; background: #8B4513; border-radius: 10px; z-index: 10;">
+                    <div style="text-align: center; line-height: 60px; font-size: 20px;">🌉</div>
+                </div>
+                
+                <!-- 洞窟 -->
+                <div class="cave" style="position: absolute; left: 350px; top: 280px;">
+                    <div style="font-size: 40px;">🕳️</div>
+                </div>
+                
+                <!-- その他の地形 -->
+                <div class="forest" style="position: absolute; left: 200px; top: 300px;">
+                    <div style="font-size: 30px;">🌲🌳🌲</div>
+                </div>
+            </div>
+            
+            <!-- SVG勇者プレイヤー -->
+            <div id="player" class="character" style="top: 250px; left: 200px;">
+                <svg width="40" height="40" viewBox="0 0 40 40" id="playerSvg">
+                    <!-- 体 -->
+                    <ellipse cx="20" cy="30" rx="8" ry="10" fill="#4a90e2" stroke="#2c3e50" stroke-width="1"/>
+                    <!-- 頭 -->
+                    <circle cx="20" cy="15" r="10" fill="#fdbcb4" stroke="#2c3e50" stroke-width="1"/>
+                    <!-- 髪 -->
+                    <path d="M10 12 Q20 5 30 12 Q25 8 20 8 Q15 8 10 12" fill="#8b4513"/>
+                    <!-- 目 -->
+                    <circle cx="16" cy="13" r="2" fill="white"/>
+                    <circle cx="24" cy="13" r="2" fill="white"/>
+                    <circle cx="16" cy="13" r="1" fill="black"/>
+                    <circle cx="24" cy="13" r="1" fill="black"/>
+                    <!-- 口 -->
+                    <path d="M18 18 Q20 20 22 18" stroke="#2c3e50" stroke-width="1" fill="none"/>
+                    <!-- 腕 -->
+                    <ellipse cx="12" cy="25" rx="3" ry="8" fill="#fdbcb4" stroke="#2c3e50" stroke-width="1"/>
+                    <ellipse cx="28" cy="25" rx="3" ry="8" fill="#fdbcb4" stroke="#2c3e50" stroke-width="1"/>
+                    <!-- 足 -->
+                    <ellipse cx="16" cy="38" rx="3" ry="4" fill="#654321" stroke="#2c3e50" stroke-width="1"/>
+                    <ellipse cx="24" cy="38" rx="3" ry="4" fill="#654321" stroke="#2c3e50" stroke-width="1"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- UI エリア -->
+        <div id="uiArea">
+            <!-- ステータス -->
+            <div id="statusPanel">
+                <div class="status-item">
+                    <span>なまえ：</span><span id="playerName">カケル</span>
+                </div>
+                <div class="status-item">
+                    <span>HP：</span><span id="playerHP">100</span><span>/</span><span id="playerMaxHP">100</span>
+                </div>
+                <div class="status-item">
+                    <span>やる気：</span><span id="playerMP">50</span><span>/</span><span id="playerMaxMP">50</span>
+                </div>
+                <div class="status-item">
+                    <span>レベル：</span><span id="playerLevel">1</span>
+                </div>
+            </div>
+
+            <!-- メッセージウィンドウ -->
+            <div id="messageWindow" class="hidden">
+                <p id="messageText"></p>
+                <button id="messageNext" onclick="nextMessage()">つぎへ ▶</button>
+            </div>
+
+            <!-- 戦闘画面 -->
+            <div id="battleScreen" class="hidden">
+                <div class="battle-area">
+                    <div class="enemy-area">
+                        <img id="enemyImage" class="enemy-image" src="" alt="敵">
+                        <div id="enemyInfo">
+                            <div><span id="enemyName">スライム</span></div>
+                            <div>HP: <span id="enemyHP">30</span></div>
+                        </div>
+                    </div>
+                    <div class="battle-menu">
+                        <button class="battle-btn" onclick="attack()">こうげき</button>
+                        <button class="battle-btn" onclick="useSkill()">とくぎ</button>
+                        <button class="battle-btn" onclick="useItem()">どうぐ</button>
+                        <button class="battle-btn" onclick="runAway()">にげる</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 移動ボタン（スマホ用） -->
+            <div id="mobileControls">
+                <div class="control-row">
+                    <button class="move-btn" onclick="movePlayer('up')">↑</button>
+                </div>
+                <div class="control-row">
+                    <button class="move-btn" onclick="movePlayer('left')">←</button>
+                    <button class="move-btn" onclick="checkEvent()">調べる</button>
+                    <button class="move-btn" onclick="movePlayer('right')">→</button>
+                </div>
+                <div class="control-row">
+                    <button class="move-btn" onclick="movePlayer('down')">↓</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 設定画面 -->
+    <div id="settingsScreen" class="screen hidden">
+        <div class="settings-container">
+            <h2>せってい</h2>
+            <div class="setting-item">
+                <label>なまえ：</label>
+                <input type="text" id="nameInput" value="カケル" maxlength="6">
+            </div>
+            <div class="setting-item">
+                <label>せいべつ：</label>
+                <select id="genderSelect">
+                    <option value="boy">おとこのこ</option>
+                    <option value="girl">おんなのこ</option>
+                </select>
+            </div>
+            <div class="setting-item">
+                <label>おんがくのおおきさ：</label>
+                <input type="range" id="volumeSlider" min="0" max="100" value="50">
+                <span id="volumeValue">50%</span>
+            </div>
+            <div class="settings-menu">
+                <button class="menu-btn" onclick="saveSettings()">けってい</button>
+                <button class="menu-btn" onclick="backToTitle()">もどる</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BGM用audio要素 -->
+    <audio id="fieldBgm" loop>
+        <source src="audio/fi-rudo.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="battleBgm" loop>
+        <source src="audio/senntou.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

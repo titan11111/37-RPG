@@ -26,7 +26,7 @@ let gameState = {
 const enemies = {
     slime: {
         name: 'スライム',
-        image: 'images/slime.png',
+        image: 'images/suraimu.png',
         hp: 30,
         maxHp: 30,
         attack: 8,
@@ -34,7 +34,7 @@ const enemies = {
     },
     goblin: {
         name: 'ゴブリン',
-        image: 'images/goblin.png',
+        image: 'images/goburin.png',
         hp: 45,
         maxHp: 45,
         attack: 12,
@@ -42,7 +42,7 @@ const enemies = {
     },
     demon: {
         name: 'まおう',
-        image: 'images/demon.png',
+        image: 'images/maou.png',
         hp: 150,
         maxHp: 150,
         attack: 25,
@@ -891,4 +891,4 @@ console.log('ヒカリノオウコク - ゲーム読み込み完了！');
 console.log('チートコード: boss, heal, win');
 console.log('操作方法: 矢印キー/WASD/スワイプで移動、スペース/ダブルタップで調べる');
 console.log('BGMファイルの配置: audio/fi-rudo.mp3, audio/senntou.mp3');
-console.log('敵画像の配置: images/goblin.png, images/demon.png, images/slime.png');
+console.log('敵画像の配置: images/goburin.png, images/maou.png, images/suraimu.png');

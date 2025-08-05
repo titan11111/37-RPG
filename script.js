@@ -389,13 +389,38 @@ function movePlayer(direction) {
     // 向きを更新
     updatePlayerDirection();
     
+    // 固定の敵との遭遇チェック
+    if (checkBattleEncounter()) {
+        playMoveSound();
+        return;
+    }
+
     // ランダムエンカウント（低確率）
     if (Math.random() < 0.05) {
         startRandomBattle();
     }
-    
+
     // 移動音
     playMoveSound();
+}
+
+// 敵との遭遇チェック
+function checkBattleEncounter() {
+    const playerX = gameState.player.x;
+    const playerY = gameState.player.y;
+
+    for (let i = 0; i < fieldEvents.length; i++) {
+        const event = fieldEvents[i];
+        if (event.type === 'battle' || event.type === 'dungeon') {
+            const distance = Math.hypot(playerX - event.x, playerY - event.y);
+            if (distance < 40) {
+                fieldEvents.splice(i, 1);
+                startBattle(event.enemy);
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 // イベントチェック

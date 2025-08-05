@@ -5,7 +5,7 @@ let gameState = {
         name: 'カケル',
         gender: 'boy',
         x: 200,
-        y: 250,
+        y: 240,
         hp: 100,
         maxHp: 100,
         mp: 50,
@@ -53,31 +53,31 @@ const enemies = {
 // フィールドイベント（新しい地形を含む）
 const fieldEvents = [
     // 街のイベント
-    { x: 60, y: 80, type: 'town', message: 'ヒカリの街へようこそ！\nここは平和な街です。' },
-    { x: 300, y: 80, type: 'shop', message: 'よろず屋です！\n回復アイテムを手に入れた！' },
-    { x: 60, y: 300, type: 'church', message: 'ここは教会です。\nHPとMPが全回復しました！' },
-    
+    { x: 80, y: 80, type: 'town', message: 'ヒカリの街へようこそ！\nここは平和な街です。' },
+    { x: 280, y: 80, type: 'shop', message: 'よろず屋です！\n回復アイテムを手に入れた！' },
+    { x: 80, y: 320, type: 'church', message: 'ここは教会です。\nHPとMPが全回復しました！' },
+
     // 山のイベント
-    { x: 300, y: 60, type: 'mountain', message: '高い山です。\n見晴らしがとてもいいですね！' },
-    { x: 320, y: 60, type: 'cave', message: '山の洞窟を発見！\n中は暗くて怖そうです...' },
-    
+    { x: 320, y: 40, type: 'mountain', message: '高い山です。\n見晴らしがとてもいいですね！' },
+    { x: 360, y: 80, type: 'cave', message: '山の洞窟を発見！\n中は暗くて怖そうです...' },
+
     // 橋のイベント
-    { x: 200, y: 210, type: 'bridge', message: 'きれいな石の橋です。\n川を渡ることができます。' },
-    
+    { x: 160, y: 200, type: 'bridge', message: 'きれいな石の橋です。\n川を渡ることができます。' },
+
     // 洞窟のイベント
-    { x: 350, y: 280, type: 'dungeon', enemy: 'demon' },
-    
+    { x: 360, y: 280, type: 'dungeon', enemy: 'demon' },
+
     // 森のイベント
-    { x: 300, y: 300, type: 'forest', message: '深い森です。\n小鳥の鳴き声が聞こえます。' },
-    
+    { x: 320, y: 320, type: 'forest', message: '深い森です。\n小鳥の鳴き声が聞こえます。' },
+
     // 戦闘イベント
     { x: 160, y: 160, type: 'battle', enemy: 'slime' },
-    { x: 280, y: 140, type: 'battle', enemy: 'goblin' },
-    { x: 300, y: 320, type: 'battle', enemy: 'slime' },
-    
+    { x: 240, y: 160, type: 'battle', enemy: 'goblin' },
+    { x: 240, y: 320, type: 'battle', enemy: 'slime' },
+
     // 宝箱イベント
-    { x: 350, y: 50, type: 'treasure', message: 'きらきら光る宝箱を見つけた！\nやる気が10回復した！' },
-    { x: 50, y: 350, type: 'treasure', message: '古い宝箱を発見！\nHPが20回復した！' }
+    { x: 360, y: 40, type: 'treasure', message: 'きらきら光る宝箱を見つけた！\nやる気が10回復した！' },
+    { x: 40, y: 360, type: 'treasure', message: '古い宝箱を発見！\nHPが20回復した！' }
 ];
 
 // BGM管理

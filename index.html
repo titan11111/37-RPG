@@ -26,61 +26,64 @@
             <!-- フィールド -->
             <div id="field">
                 <!-- 街 -->
-                <div class="town" style="position: absolute; left: 60px; top: 80px;">
+                <div class="town" style="position: absolute; left: 80px; top: 80px;">
                     <div class="building">🏠</div>
                 </div>
 
                 <!-- 店 -->
-                <div class="town" style="position: absolute; left: 300px; top: 80px;">
+                <div class="town" style="position: absolute; left: 280px; top: 80px;">
                     <div class="building">🏪</div>
                 </div>
 
                 <!-- 教会 -->
-                <div class="town" style="position: absolute; left: 60px; top: 300px;">
+                <div class="town" style="position: absolute; left: 80px; top: 320px;">
                     <div class="building">⛪</div>
                 </div>
 
                 <!-- 山 -->
-                <div class="mountain" style="position: absolute; left: 300px; top: 60px;">
+                <div class="mountain" style="position: absolute; left: 320px; top: 40px;">
                     <div class="mountain-peak">⛰️</div>
                     <div class="mountain-peak">🏔️</div>
                 </div>
-                
+
                 <!-- 川 -->
                 <div class="river" style="position: absolute; left: 0px; top: 200px; width: 400px; height: 40px; background: linear-gradient(90deg, #74b9ff, #0984e3); border-radius: 20px;"></div>
-                
+
                 <!-- 橋 -->
-                <div class="bridge" style="position: absolute; left: 160px; top: 190px; width: 80px; height: 60px; background: #8B4513; border-radius: 10px; z-index: 10;">
-                    <div style="text-align: center; line-height: 60px; font-size: 20px;">🌉</div>
+                <div class="bridge" style="position: absolute; left: 160px; top: 200px; width: 80px; height: 40px; background: #8B4513; border-radius: 10px; z-index: 10;">
+                    <div style="text-align: center; line-height: 40px; font-size: 20px;">🌉</div>
                 </div>
-                
-                <!-- 洞窟 -->
-                <div class="cave" style="position: absolute; left: 350px; top: 280px;">
+
+                <!-- 洞窟（ダンジョン） -->
+                <div class="cave" style="position: absolute; left: 360px; top: 280px;">
                     <div style="font-size: 40px;">🕳️</div>
                 </div>
-                
+
                 <!-- その他の地形 -->
-                <div class="forest" style="position: absolute; left: 300px; top: 300px;">
+                <div class="forest" style="position: absolute; left: 320px; top: 320px;">
                     <div style="font-size: 30px;">🌲🌳🌲</div>
                 </div>
             </div>
-            
+
             <!-- SVG勇者プレイヤー -->
-            <div id="player" class="character" style="top: 250px; left: 200px;">
+            <div id="player" class="character" style="top: 240px; left: 200px;">
                 <svg width="40" height="40" viewBox="0 0 40 40" id="playerSvg">
                     <!-- 体 -->
-                    <ellipse cx="20" cy="30" rx="8" ry="10" fill="#4a90e2" stroke="#2c3e50" stroke-width="1"/>
+                    <ellipse cx="20" cy="30" rx="8" ry="10" fill="#5dade2" stroke="#2c3e50" stroke-width="1"/>
                     <!-- 頭 -->
                     <circle cx="20" cy="15" r="10" fill="#fdbcb4" stroke="#2c3e50" stroke-width="1"/>
                     <!-- 髪 -->
                     <path d="M10 12 Q20 5 30 12 Q25 8 20 8 Q15 8 10 12" fill="#8b4513"/>
                     <!-- 目 -->
-                    <circle cx="16" cy="13" r="2" fill="white"/>
-                    <circle cx="24" cy="13" r="2" fill="white"/>
-                    <circle cx="16" cy="13" r="1" fill="black"/>
-                    <circle cx="24" cy="13" r="1" fill="black"/>
+                    <circle cx="16" cy="13" r="3" fill="white"/>
+                    <circle cx="24" cy="13" r="3" fill="white"/>
+                    <circle cx="16" cy="13" r="1.5" fill="black"/>
+                    <circle cx="24" cy="13" r="1.5" fill="black"/>
+                    <!-- ほっぺ -->
+                    <circle cx="16" cy="18" r="1.5" fill="#ff8c94" opacity="0.8"/>
+                    <circle cx="24" cy="18" r="1.5" fill="#ff8c94" opacity="0.8"/>
                     <!-- 口 -->
-                    <path d="M18 18 Q20 20 22 18" stroke="#2c3e50" stroke-width="1" fill="none"/>
+                    <path d="M18 19 Q20 21 22 19" stroke="#2c3e50" stroke-width="1" fill="none"/>
                     <!-- 腕 -->
                     <ellipse cx="12" cy="25" rx="3" ry="8" fill="#fdbcb4" stroke="#2c3e50" stroke-width="1"/>
                     <ellipse cx="28" cy="25" rx="3" ry="8" fill="#fdbcb4" stroke="#2c3e50" stroke-width="1"/>

@@ -115,25 +115,6 @@
                 <button id="messageNext" onclick="nextMessage()">つぎへ ▶</button>
             </div>
 
-            <!-- 戦闘画面 -->
-            <div id="battleScreen" class="hidden">
-                <div class="battle-area">
-                    <div class="enemy-area">
-                        <img id="enemyImage" class="enemy-image" src="" alt="敵">
-                        <div id="enemyInfo">
-                            <div><span id="enemyName">スライム</span></div>
-                            <div>HP: <span id="enemyHP">30</span></div>
-                        </div>
-                    </div>
-                    <div class="battle-menu">
-                        <button class="battle-btn" onclick="attack()">こうげき</button>
-                        <button class="battle-btn" onclick="useSkill()">とくぎ</button>
-                        <button class="battle-btn" onclick="useItem()">どうぐ</button>
-                        <button class="battle-btn" onclick="runAway()">にげる</button>
-                    </div>
-                </div>
-            </div>
-
             <!-- 移動ボタン（スマホ用） -->
             <div id="mobileControls">
                 <div class="control-row">
@@ -146,6 +127,25 @@
                 </div>
                 <div class="control-row">
                     <button class="move-btn" onclick="movePlayer('down')">↓</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 戦闘画面 -->
+        <div id="battleScreen" class="hidden">
+            <div class="battle-area">
+                <div class="enemy-area">
+                    <img id="enemyImage" class="enemy-image" src="" alt="敵">
+                    <div id="enemyInfo">
+                        <div><span id="enemyName">スライム</span></div>
+                        <div>HP: <span id="enemyHP">30</span></div>
+                    </div>
+                </div>
+                <div class="battle-menu">
+                    <button class="battle-btn" onclick="attack()">こうげき</button>
+                    <button class="battle-btn" onclick="useSkill()">とくぎ</button>
+                    <button class="battle-btn" onclick="useItem()">どうぐ</button>
+                    <button class="battle-btn" onclick="runAway()">にげる</button>
                 </div>
             </div>
         </div>

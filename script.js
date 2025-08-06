@@ -77,7 +77,12 @@ const fieldEvents = [
     
     // 宝箱イベント
     { x: 350, y: 50, type: 'treasure', message: 'きらきら光る宝箱を見つけた！\nやる気が10回復した！' },
-    { x: 50, y: 350, type: 'treasure', message: '古い宝箱を発見！\nHPが20回復した！' }
+    { x: 50, y: 350, type: 'treasure', message: '古い宝箱を発見！\nHPが20回復した！' },
+
+    // 左側の新しいイベント
+    { x: 120, y: 260, type: 'village', message: '小さな村にたどり着いた！' },
+    { x: 40, y: 260, type: 'npc', message: '旅人: 道に迷わないよう気をつけてね。' },
+    { x: 80, y: 320, type: 'chest', message: '木の宝箱を見つけた！\n薬草を手に入れた！' }
 ];
 
 // BGM管理
@@ -272,6 +277,9 @@ function createFieldEvents() {
             case 'town':
                 eventElement.textContent = '🏠';
                 break;
+            case 'village':
+                eventElement.textContent = '🏘️';
+                break;
             case 'shop':
                 eventElement.textContent = '🏪';
                 break;
@@ -299,6 +307,12 @@ function createFieldEvents() {
             case 'treasure':
                 eventElement.textContent = '💎';
                 break;
+            case 'chest':
+                eventElement.textContent = '📦';
+                break;
+            case 'npc':
+                eventElement.textContent = '🙂';
+                break;
         }
         
         eventElement.onclick = () => triggerEvent(event);
@@ -311,7 +325,7 @@ function setupKeyboardControls() {
     document.addEventListener('keydown', function(e) {
         if (gameState.currentScreen !== 'gameScreen') return;
         if (gameState.inBattle) return;
-        if (!document.getElementById('messageWindow').classList.contains('hidden')) return;
+        if (!document.getElementById('messageBox').classList.contains('hidden')) return;
         
         switch(e.key) {
             case 'ArrowUp':
@@ -395,8 +409,8 @@ function movePlayer(direction) {
         return;
     }
 
-    // ランダムエンカウント（低確率）
-    if (Math.random() < 0.05) {
+    // ランダムエンカウント（発生率を下げる）
+    if (Math.random() < 0.1) {
         startRandomBattle();
     }
 
@@ -443,6 +457,8 @@ function checkEvent() {
 function triggerEvent(event) {
     switch(event.type) {
         case 'town':
+        case 'village':
+        case 'npc':
         case 'mountain':
         case 'bridge':
         case 'forest':
@@ -474,6 +490,13 @@ function triggerEvent(event) {
             const treasureElement = document.querySelector(`[style*="left: ${event.x}px"][style*="top: ${event.y}px"]`);
             if (treasureElement) treasureElement.style.display = 'none';
             break;
+        case 'chest':
+            gameState.player.hp = Math.min(gameState.player.maxHp, gameState.player.hp + 10);
+            updatePlayerDisplay();
+            showMessage([event.message]);
+            const chestElement = document.querySelector(`[style*="left: ${event.x}px"][style*="top: ${event.y}px"]`);
+            if (chestElement) chestElement.style.display = 'none';
+            break;
         case 'battle':
         case 'dungeon':
             startBattle(event.enemy);
@@ -485,11 +508,10 @@ function triggerEvent(event) {
 function showMessage(messages) {
     gameState.messages = messages;
     gameState.currentMessageIndex = 0;
-    
-    const messageWindow = document.getElementById('messageWindow');
+    const messageBox = document.getElementById('messageBox');
     const messageText = document.getElementById('messageText');
-    
-    messageWindow.classList.remove('hidden');
+
+    messageBox.classList.remove('hidden');
     messageText.textContent = messages[0];
 }
 
@@ -500,7 +522,7 @@ function nextMessage() {
         document.getElementById('messageText').textContent = 
             gameState.messages[gameState.currentMessageIndex];
     } else {
-        document.getElementById('messageWindow').classList.add('hidden');
+        document.getElementById('messageBox').classList.add('hidden');
         gameState.messages = [];
         gameState.currentMessageIndex = 0;
     }

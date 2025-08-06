@@ -21,6 +21,12 @@
 
     <!-- ゲーム画面 -->
     <div id="gameScreen" class="screen hidden">
+        <!-- メッセージウィンドウ -->
+        <div id="messageWindow" class="hidden">
+            <p id="messageText"></p>
+            <button id="messageNext" onclick="nextMessage()">つぎへ ▶</button>
+        </div>
+
         <!-- ゲームエリア -->
         <div id="gameArea">
             <!-- フィールド -->
@@ -91,43 +97,34 @@
             </div>
         </div>
 
-        <!-- UI エリア -->
-        <div id="uiArea">
-            <!-- ステータス -->
-            <div id="statusPanel">
-                <div class="status-item">
-                    <span>なまえ：</span><span id="playerName">カケル</span>
-                </div>
-                <div class="status-item">
-                    <span>HP：</span><span id="playerHP">100</span><span>/</span><span id="playerMaxHP">100</span>
-                </div>
-                <div class="status-item">
-                    <span>やる気：</span><span id="playerMP">50</span><span>/</span><span id="playerMaxMP">50</span>
-                </div>
-                <div class="status-item">
-                    <span>レベル：</span><span id="playerLevel">1</span>
-                </div>
+        <!-- 移動ボタン（スマホ用） -->
+        <div id="mobileControls">
+            <div class="control-row">
+                <button class="move-btn" onclick="movePlayer('up')">↑</button>
             </div>
-
-            <!-- メッセージウィンドウ -->
-            <div id="messageWindow" class="hidden">
-                <p id="messageText"></p>
-                <button id="messageNext" onclick="nextMessage()">つぎへ ▶</button>
+            <div class="control-row">
+                <button class="move-btn" onclick="movePlayer('left')">←</button>
+                <button class="move-btn" onclick="checkEvent()">調べる</button>
+                <button class="move-btn" onclick="movePlayer('right')">→</button>
             </div>
+            <div class="control-row">
+                <button class="move-btn" onclick="movePlayer('down')">↓</button>
+            </div>
+        </div>
 
-            <!-- 移動ボタン（スマホ用） -->
-            <div id="mobileControls">
-                <div class="control-row">
-                    <button class="move-btn" onclick="movePlayer('up')">↑</button>
-                </div>
-                <div class="control-row">
-                    <button class="move-btn" onclick="movePlayer('left')">←</button>
-                    <button class="move-btn" onclick="checkEvent()">調べる</button>
-                    <button class="move-btn" onclick="movePlayer('right')">→</button>
-                </div>
-                <div class="control-row">
-                    <button class="move-btn" onclick="movePlayer('down')">↓</button>
-                </div>
+        <!-- ステータス -->
+        <div id="statusPanel">
+            <div class="status-item">
+                <span>なまえ：</span><span id="playerName">カケル</span>
+            </div>
+            <div class="status-item">
+                <span>HP：</span><span id="playerHP">100</span><span>/</span><span id="playerMaxHP">100</span>
+            </div>
+            <div class="status-item">
+                <span>やる気：</span><span id="playerMP">50</span><span>/</span><span id="playerMaxMP">50</span>
+            </div>
+            <div class="status-item">
+                <span>レベル：</span><span id="playerLevel">1</span>
             </div>
         </div>
 

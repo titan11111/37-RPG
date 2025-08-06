@@ -228,21 +228,12 @@ body {
   transform: scaleX(1);
 }
 
-/* UIエリア */
-#uiArea {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 10px;
-  padding: 15px;
-  height: 35vh;
-  overflow-y: auto;
-}
-
 /* ステータスパネル */
 #statusPanel {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-  margin-bottom: 15px;
+  margin: 10px auto;
   padding: 10px;
   background: linear-gradient(135deg, #74b9ff, #0984e3);
   border-radius: 8px;
@@ -256,12 +247,17 @@ body {
 
 /* メッセージウィンドウ */
 #messageWindow {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
   background: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 20px;
   border-radius: 10px;
-  margin-bottom: 15px;
   border: 2px solid #3498db;
+  z-index: 20;
 }
 
 #messageText {
@@ -356,7 +352,8 @@ body {
 #mobileControls {
   display: grid;
   gap: 5px;
-  margin-top: 10px;
+  margin: 10px auto;
+  justify-content: center;
 }
 
 .control-row {
@@ -491,10 +488,6 @@ body {
       height: 50vh;
   }
   
-  #uiArea {
-      height: 45vh;
-  }
-  
   #statusPanel {
       grid-template-columns: 1fr;
       font-size: 0.9rem;
@@ -541,11 +534,6 @@ body {
   
   #gameArea {
       height: 45vh;
-  }
-  
-  #uiArea {
-      height: 50vh;
-      padding: 10px;
   }
   
   .enemy-image {

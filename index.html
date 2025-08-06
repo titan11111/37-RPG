@@ -30,19 +30,19 @@
         <!-- ゲームエリア -->
         <div id="gameArea">
             <!-- フィールド -->
-            <div id="field">
+            <div id="field" class="tile-grass">
                 <!-- 街 -->
-                <div class="town" style="position: absolute; left: 60px; top: 80px;">
+                <div class="town tile-road" style="position: absolute; left: 60px; top: 80px; width: 80px; height: 80px;">
                     <div class="building">🏠</div>
                 </div>
 
                 <!-- 店 -->
-                <div class="town" style="position: absolute; left: 300px; top: 80px;">
+                <div class="town tile-road" style="position: absolute; left: 300px; top: 80px; width: 80px; height: 80px;">
                     <div class="building">🏪</div>
                 </div>
 
                 <!-- 教会 -->
-                <div class="town" style="position: absolute; left: 60px; top: 300px;">
+                <div class="town tile-road" style="position: absolute; left: 60px; top: 300px; width: 80px; height: 80px;">
                     <div class="building">⛪</div>
                 </div>
 
@@ -53,10 +53,10 @@
                 </div>
                 
                 <!-- 川 -->
-                <div class="river" style="position: absolute; left: 0px; top: 200px; width: 400px; height: 40px; background: linear-gradient(90deg, #74b9ff, #0984e3); border-radius: 20px;"></div>
+                <div class="river tile-water" style="position: absolute; left: 0px; top: 200px; width: 400px; height: 40px; border-radius: 20px;"></div>
                 
                 <!-- 橋 -->
-                <div class="bridge" style="position: absolute; left: 160px; top: 190px; width: 80px; height: 60px; background: #8B4513; border-radius: 10px; z-index: 10;">
+                <div class="bridge tile-road" style="position: absolute; left: 160px; top: 190px; width: 80px; height: 60px; border-radius: 10px; z-index: 10;">
                     <div style="text-align: center; line-height: 60px; font-size: 20px;">🌉</div>
                 </div>
                 
@@ -66,9 +66,7 @@
                 </div>
                 
                 <!-- その他の地形 -->
-                <div class="forest" style="position: absolute; left: 300px; top: 300px;">
-                    <div style="font-size: 30px;">🌲🌳🌲</div>
-                </div>
+                <div class="forest tile-forest" style="position: absolute; left: 300px; top: 300px;"></div>
             </div>
             
             <!-- SVG勇者プレイヤー -->

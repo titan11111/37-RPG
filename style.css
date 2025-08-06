@@ -121,21 +121,39 @@ body {
 #field {
   width: 100%;
   height: 100%;
-  background-image: 
-      linear-gradient(45deg, #2ecc71 25%, transparent 25%),
-      linear-gradient(-45deg, #2ecc71 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, #2ecc71 75%),
-      linear-gradient(-45deg, transparent 75%, #2ecc71 75%);
-  background-size: 40px 40px;
-  background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
   position: relative;
+}
+
+/* タイル */
+.tile-grass,
+.tile-forest,
+.tile-water,
+.tile-road {
+  background-size: 40px 40px;
+  background-repeat: repeat;
+}
+
+.tile-grass {
+  background-image: url('images/tiles/grass.svg');
+}
+
+.tile-forest {
+  background-image: url('images/tiles/forest.svg');
+}
+
+.tile-water {
+  background-image: url('images/tiles/water.svg');
+}
+
+.tile-road {
+  background-image: url('images/tiles/road.svg');
 }
 
 /* 地形要素 */
 .town {
   display: flex;
-  gap: 10px;
-  background: rgba(139, 69, 19, 0.3);
+  align-items: center;
+  justify-content: center;
   padding: 10px;
   border-radius: 10px;
   border: 2px solid #8B4513;
@@ -171,6 +189,8 @@ body {
 }
 
 .forest {
+  width: 80px;
+  height: 80px;
   animation: forestWave 2s ease-in-out infinite;
 }
 

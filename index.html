@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>ヒカリノオウコク - 魔石と子どもたちの冒険</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -24,7 +24,7 @@
         <!-- メッセージボックス -->
         <div id="messageBox" class="hidden">
             <p id="messageText"></p>
-            <button id="messageNext" onclick="nextMessage()">つぎへ ▶</button>
+            <button id="messageNext" class="next-button" onclick="nextMessage()">つぎへ ▶</button>
         </div>
 
         <!-- ゲームエリア -->
@@ -128,7 +128,7 @@
 
         <!-- 戦闘画面 -->
         <div id="battleScreen" class="hidden">
-            <div class="battle-area">
+            <div class="battle-area battle-modal">
                 <div class="enemy-area">
                     <img id="enemyImage" class="enemy-image" src="" alt="敵">
                     <div id="enemyInfo">
@@ -137,10 +137,10 @@
                     </div>
                 </div>
                 <div class="battle-menu">
-                    <button class="battle-btn" onclick="attack()">こうげき</button>
-                    <button class="battle-btn" onclick="useSkill()">とくぎ</button>
-                    <button class="battle-btn" onclick="useItem()">どうぐ</button>
-                    <button class="battle-btn" onclick="runAway()">にげる</button>
+                    <button class="battle-button" onclick="attack()">こうげき</button>
+                    <button class="battle-button" onclick="useSkill()">とくぎ</button>
+                    <button class="battle-button" onclick="useItem()">どうぐ</button>
+                    <button class="battle-button" onclick="runAway()">にげる</button>
                 </div>
             </div>
         </div>

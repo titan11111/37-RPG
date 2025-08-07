@@ -549,6 +549,7 @@ function startBattle(enemyType) {
     const enemyHP = document.getElementById('enemyHP');
     
     battleScreen.classList.remove('hidden');
+    document.querySelector('.next-button').style.display = 'none';
     enemyImage.src = gameState.currentEnemy.image;
     enemyImage.alt = gameState.currentEnemy.name;
     enemyName.textContent = gameState.currentEnemy.name;
@@ -713,6 +714,7 @@ function endBattle() {
     
     setTimeout(() => {
         document.getElementById('battleScreen').classList.add('hidden');
+        document.querySelector('.next-button').style.display = 'inline-block';
     }, 1000);
 }
 

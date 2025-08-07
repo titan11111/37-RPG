@@ -10,6 +10,11 @@ body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   overflow: hidden;
   height: 100vh;
+}
+
+html, body {
+  touch-action: manipulation;
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -352,20 +357,37 @@ body {
   margin: 0 auto;
 }
 
-.battle-btn {
-  padding: 15px;
-  font-size: 1.1rem;
+.battle-button {
+  padding: 16px;
+  margin: 8px 0;
+  font-size: 18px;
+  min-height: 48px;
+  width: 80%;
+  max-width: 280px;
+  border-radius: 8px;
+  box-sizing: border-box;
   background: #2980b9;
   color: white;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.battle-btn:hover {
+.battle-button:hover {
   background: #3498db;
   transform: scale(1.05);
+}
+
+.battle-modal {
+  z-index: 1000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #f88;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 /* 移動コントロール（スマホ用） */

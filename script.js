@@ -1,5 +1,5 @@
 const CELL_SIZE = 40;
-const mapWidth = 20;
+const mapWidth = 30;
 const mapHeight = 10;
 
 // ゲームの状態管理
@@ -9,7 +9,7 @@ let gameState = {
         name: 'カケル',
         gender: 'boy',
         x: 10 * CELL_SIZE,
-        y: 5 * CELL_SIZE,
+        y: 4 * CELL_SIZE,
         hp: 100,
         maxHp: 100,
         mp: 50,
@@ -56,10 +56,10 @@ const enemies = {
 
 // フィールドイベント（20x10グリッドに再配置）
 const fieldEvents = [
-    { x: 10 * CELL_SIZE, y: 5 * CELL_SIZE, type: 'village', message: 'スタート村。ここでセーブできます。' },
+    { x: 10 * CELL_SIZE, y: 4 * CELL_SIZE, type: 'village', message: 'スタート村。ここでセーブできます。' },
     { x: 18 * CELL_SIZE, y: 1 * CELL_SIZE, type: 'castle', message: '魔王城がそびえ立つ… 戦いの準備はいいか？', enemy: 'demon' },
     { x: 14 * CELL_SIZE, y: 6 * CELL_SIZE, type: 'forest', message: '森の迷路だ。モンスターに注意！' },
-    { x: 7 * CELL_SIZE, y: 5 * CELL_SIZE, type: 'river', message: '湖と橋がある。橋以外は渡れない。' },
+    { x: 7 * CELL_SIZE, y: 5 * CELL_SIZE, type: 'bridge', message: '古い木の橋だ。ここを通れば川を渡れる。' },
     { x: 3 * CELL_SIZE, y: 8 * CELL_SIZE, type: 'ruins', message: '古い遺跡を発見！ 謎を解いて宝を手に入れた。' },
     { x: 2 * CELL_SIZE, y: 2 * CELL_SIZE, type: 'volcano', message: '火山地帯だ。炎の魔物が現れた！', enemy: 'goblin' },
     { x: 17 * CELL_SIZE, y: 8 * CELL_SIZE, type: 'village', message: '雪原の村に到着。装備を強化できそうだ。' },
@@ -299,7 +299,10 @@ function createFieldEvents() {
                 eventElement.textContent = '🏰';
                 break;
             case 'river':
-                eventElement.textContent = '🌊';
+                eventElement.style.display = 'none';
+                break;
+            case 'bridge':
+                eventElement.style.display = 'none';
                 break;
             case 'ruins':
                 eventElement.textContent = '🏚️';

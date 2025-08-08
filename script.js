@@ -290,13 +290,13 @@ function createFieldEvents() {
                 eventElement.textContent = '⛰️';
                 break;
             case 'cave':
-                eventElement.textContent = '🕳️';
+                eventElement.innerHTML = '<img src="images/tiles/cave.svg" alt="洞窟">';
                 break;
             case 'bridge':
                 eventElement.textContent = '🌉';
                 break;
             case 'dungeon':
-                eventElement.textContent = '🏰';
+                eventElement.innerHTML = '<img src="images/tiles/castle.svg" alt="城">';
                 break;
             case 'forest':
                 eventElement.textContent = '🌲';

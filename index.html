@@ -30,42 +30,10 @@
         <!-- ゲームエリア -->
         <div id="gameArea">
             <!-- フィールド -->
-            <div id="field" class="tile-grass">
-                <!-- 街 -->
-                <div class="town tile-road" style="position: absolute; left: 60px; top: 80px; width: 80px; height: 80px;">
-                    <div class="building">🏠</div>
-                </div>
+            <div id="field" class="tile-grass"></div>
 
-                <!-- 店 -->
-                <div class="town tile-road" style="position: absolute; left: 300px; top: 80px; width: 80px; height: 80px;">
-                    <div class="building">🏪</div>
-                </div>
-
-                <!-- 教会 -->
-                <div class="town tile-road" style="position: absolute; left: 60px; top: 300px; width: 80px; height: 80px;">
-                    <div class="building">⛪</div>
-                </div>
-
-                <!-- 山 -->
-                <div class="mountain" style="position: absolute; left: 300px; top: 60px;">
-                    <div class="mountain-peak">⛰️</div>
-                    <div class="mountain-peak">🏔️</div>
-                </div>
-                
-                <!-- 川 -->
-                <div class="river tile-water" style="position: absolute; left: 0px; top: 200px; width: 400px; height: 40px; border-radius: 20px;"></div>
-                
-                <!-- 橋 -->
-                <div class="bridge tile-road" style="position: absolute; left: 160px; top: 190px; width: 80px; height: 60px; border-radius: 10px; z-index: 10;">
-                    <div style="text-align: center; line-height: 60px; font-size: 20px;">🌉</div>
-                </div>
-                
-                <!-- その他の地形 -->
-                <div class="forest tile-forest" style="position: absolute; left: 300px; top: 300px;"></div>
-            </div>
-            
             <!-- SVG勇者プレイヤー -->
-            <div id="player" class="character" style="top: 250px; left: 200px;">
+            <div id="player" class="character" style="top: 200px; left: 400px;">
                 <svg width="40" height="40" viewBox="0 0 40 40" id="playerSvg">
                     <!-- 体 -->
                     <ellipse cx="20" cy="30" rx="8" ry="10" fill="#4a90e2" stroke="#2c3e50" stroke-width="1"/>

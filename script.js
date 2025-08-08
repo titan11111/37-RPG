@@ -1,11 +1,15 @@
+const CELL_SIZE = 40;
+const mapWidth = 20;
+const mapHeight = 10;
+
 // ゲームの状態管理
 let gameState = {
     currentScreen: 'title',
     player: {
         name: 'カケル',
         gender: 'boy',
-        x: 200,
-        y: 250,
+        x: 10 * CELL_SIZE,
+        y: 5 * CELL_SIZE,
         hp: 100,
         maxHp: 100,
         mp: 50,
@@ -50,39 +54,17 @@ const enemies = {
     }
 };
 
-// フィールドイベント（新しい地形を含む）
+// フィールドイベント（20x10グリッドに再配置）
 const fieldEvents = [
-    // 街のイベント
-    { x: 60, y: 80, type: 'town', message: 'ヒカリの街へようこそ！\nここは平和な街です。' },
-    { x: 300, y: 80, type: 'shop', message: 'よろず屋です！\n回復アイテムを手に入れた！' },
-    { x: 60, y: 300, type: 'church', message: 'ここは教会です。\nHPとMPが全回復しました！' },
-    
-    // 山のイベント
-    { x: 300, y: 60, type: 'mountain', message: '高い山です。\n見晴らしがとてもいいですね！' },
-    { x: 320, y: 60, type: 'cave', message: '山の洞窟を発見！\n中は暗くて怖そうです...' },
-    
-    // 橋のイベント
-    { x: 200, y: 210, type: 'bridge', message: 'きれいな石の橋です。\n川を渡ることができます。' },
-    
-    // 洞窟のイベント
-    { x: 350, y: 280, type: 'dungeon', enemy: 'demon' },
-    
-    // 森のイベント
-    { x: 300, y: 300, type: 'forest', message: '深い森です。\n小鳥の鳴き声が聞こえます。' },
-    
-    // 戦闘イベント
-    { x: 160, y: 160, type: 'battle', enemy: 'slime' },
-    { x: 280, y: 140, type: 'battle', enemy: 'goblin' },
-    { x: 300, y: 320, type: 'battle', enemy: 'slime' },
-    
-    // 宝箱イベント
-    { x: 350, y: 50, type: 'treasure', message: 'きらきら光る宝箱を見つけた！\nやる気が10回復した！' },
-    { x: 50, y: 350, type: 'treasure', message: '古い宝箱を発見！\nHPが20回復した！' },
-
-    // 左側の新しいイベント
-    { x: 120, y: 260, type: 'village', message: '小さな村にたどり着いた！' },
-    { x: 40, y: 260, type: 'npc', message: '旅人: 道に迷わないよう気をつけてね。' },
-    { x: 80, y: 320, type: 'chest', message: '木の宝箱を見つけた！\n薬草を手に入れた！' }
+    { x: 10 * CELL_SIZE, y: 5 * CELL_SIZE, type: 'village', message: 'スタート村。ここでセーブできます。' },
+    { x: 18 * CELL_SIZE, y: 1 * CELL_SIZE, type: 'castle', message: '魔王城がそびえ立つ… 戦いの準備はいいか？', enemy: 'demon' },
+    { x: 14 * CELL_SIZE, y: 6 * CELL_SIZE, type: 'forest', message: '森の迷路だ。モンスターに注意！' },
+    { x: 7 * CELL_SIZE, y: 5 * CELL_SIZE, type: 'river', message: '湖と橋がある。橋以外は渡れない。' },
+    { x: 3 * CELL_SIZE, y: 8 * CELL_SIZE, type: 'ruins', message: '古い遺跡を発見！ 謎を解いて宝を手に入れた。' },
+    { x: 2 * CELL_SIZE, y: 2 * CELL_SIZE, type: 'volcano', message: '火山地帯だ。炎の魔物が現れた！', enemy: 'goblin' },
+    { x: 17 * CELL_SIZE, y: 8 * CELL_SIZE, type: 'village', message: '雪原の村に到着。装備を強化できそうだ。' },
+    { x: 11 * CELL_SIZE, y: 7 * CELL_SIZE, type: 'fountain', message: '不思議の泉だ。HPとMPが回復した！' },
+    { x: 5 * CELL_SIZE, y: 3 * CELL_SIZE, type: 'castle_ruin', message: '廃城で中ボスと遭遇！ 鍵を手に入れた。', enemy: 'goblin' }
 ];
 
 // BGM管理
@@ -313,6 +295,24 @@ function createFieldEvents() {
             case 'npc':
                 eventElement.textContent = '🙂';
                 break;
+            case 'castle':
+                eventElement.textContent = '🏰';
+                break;
+            case 'river':
+                eventElement.textContent = '🌊';
+                break;
+            case 'ruins':
+                eventElement.textContent = '🏚️';
+                break;
+            case 'volcano':
+                eventElement.textContent = '🌋';
+                break;
+            case 'fountain':
+                eventElement.textContent = '⛲';
+                break;
+            case 'castle_ruin':
+                eventElement.textContent = '🏚️';
+                break;
         }
         
         eventElement.onclick = () => triggerEvent(event);
@@ -389,7 +389,7 @@ function movePlayer(direction) {
     }
     
     // 川の当たり判定（橋以外では渡れない）
-    if (newY >= 200 && newY <= 240 && !(newX >= 160 && newX <= 240)) {
+    if (newY >= 200 && newY <= 240 && !(newX >= 280 && newX <= 320)) {
         showMessage(['川を渡れません！', '橋を探してみましょう。']);
         return;
     }
@@ -464,6 +464,10 @@ function triggerEvent(event) {
         case 'forest':
             showMessage([event.message]);
             break;
+        case 'river':
+        case 'ruins':
+            showMessage([event.message]);
+            break;
         case 'shop':
             gameState.player.mp = Math.min(gameState.player.maxMp, gameState.player.mp + 15);
             updatePlayerDisplay();
@@ -500,6 +504,21 @@ function triggerEvent(event) {
         case 'battle':
         case 'dungeon':
             startBattle(event.enemy);
+            break;
+        case 'castle':
+        case 'castle_ruin':
+            showMessage([event.message]);
+            if (event.enemy) startBattle(event.enemy);
+            break;
+        case 'volcano':
+            showMessage([event.message]);
+            if (event.enemy) startBattle(event.enemy);
+            break;
+        case 'fountain':
+            gameState.player.hp = gameState.player.maxHp;
+            gameState.player.mp = gameState.player.maxMp;
+            updatePlayerDisplay();
+            showMessage([event.message]);
             break;
     }
 }

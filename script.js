@@ -157,6 +157,7 @@ function showScreen(screenId) {
 // ゲーム開始
 function startGame() {
     showScreen('gameScreen');
+    renderPlayer();
     bgmManager.playField();
     showMessage(['ある日の授業中...', 'タブレットが光った！', 'あなたは異世界に転送されました！', 'さあ、冒険の始まりです！']);
 }
@@ -220,6 +221,42 @@ function updatePlayerGender() {
         playerSvg.querySelector('path').setAttribute('d', 'M10 12 Q20 5 30 12 Q25 8 20 8 Q15 8 10 12');
         playerSvg.querySelector('path').setAttribute('fill', '#8b4513');
     }
+}
+
+// プレイヤーを表示（存在しない場合は作成）
+function renderPlayer() {
+    let player = document.getElementById('player');
+    if (!player) {
+        player = document.createElement('div');
+        player.id = 'player';
+        player.className = 'character';
+        player.innerHTML = `
+            <svg width="40" height="40" viewBox="0 0 40 40" id="playerSvg">
+                <!-- 体 -->
+                <ellipse cx="20" cy="30" rx="8" ry="10" fill="#4a90e2" stroke="#2c3e50" stroke-width="1"/>
+                <!-- 頭 -->
+                <circle cx="20" cy="15" r="10" fill="#fdbcb4" stroke="#2c3e50" stroke-width="1"/>
+                <!-- 髪 -->
+                <path d="M10 12 Q20 5 30 12 Q25 8 20 8 Q15 8 10 12" fill="#8b4513"/>
+                <!-- 目 -->
+                <circle cx="16" cy="13" r="2" fill="white"/>
+                <circle cx="24" cy="13" r="2" fill="white"/>
+                <circle cx="16" cy="13" r="1" fill="black"/>
+                <circle cx="24" cy="13" r="1" fill="black"/>
+                <!-- 口 -->
+                <path d="M18 18 Q20 20 22 18" stroke="#2c3e50" stroke-width="1" fill="none"/>
+                <!-- 腕 -->
+                <ellipse cx="12" cy="25" rx="3" ry="8" fill="#fdbcb4" stroke="#2c3e50" stroke-width="1"/>
+                <ellipse cx="28" cy="25" rx="3" ry="8" fill="#fdbcb4" stroke="#2c3e50" stroke-width="1"/>
+                <!-- 足 -->
+                <ellipse cx="16" cy="38" rx="3" ry="4" fill="#654321" stroke="#2c3e50" stroke-width="1"/>
+                <ellipse cx="24" cy="38" rx="3" ry="4" fill="#654321" stroke="#2c3e50" stroke-width="1"/>
+            </svg>`;
+        document.getElementById('gameArea').appendChild(player);
+    }
+    player.style.left = gameState.player.x + 'px';
+    player.style.top = gameState.player.y + 'px';
+    updatePlayerGender();
 }
 
 // プレイヤーの向き更新
@@ -946,6 +983,7 @@ function loadGame() {
         if (window.gameData) {
             gameState.player = { ...window.gameData.player };
             updatePlayerDisplay();
+            renderPlayer();
             return true;
         }
     } catch (e) {

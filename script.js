@@ -64,7 +64,9 @@ const fieldEvents = [
     { x: 2 * CELL_SIZE, y: 2 * CELL_SIZE, type: 'volcano', message: '火山地帯だ。炎の魔物が現れた！', enemy: 'goblin' },
     { x: 17 * CELL_SIZE, y: 8 * CELL_SIZE, type: 'village', message: '雪原の村に到着。装備を強化できそうだ。' },
     { x: 11 * CELL_SIZE, y: 7 * CELL_SIZE, type: 'fountain', message: '不思議の泉だ。HPとMPが回復した！' },
-    { x: 5 * CELL_SIZE, y: 3 * CELL_SIZE, type: 'castle_ruin', message: '廃城で中ボスと遭遇！ 鍵を手に入れた。', enemy: 'goblin' }
+    { x: 5 * CELL_SIZE, y: 3 * CELL_SIZE, type: 'castle_ruin', message: '廃城で中ボスと遭遇！ 鍵を手に入れた。', enemy: 'goblin' },
+    { x: 22 * CELL_SIZE, y: 2 * CELL_SIZE, type: 'village', message: '砂漠の村に着いた。旅人が多い。' },
+    { x: 4 * CELL_SIZE, y: 1 * CELL_SIZE, type: 'village', message: '海辺の村に到着。新鮮な魚が並んでいる。' }
 ];
 
 // BGM管理

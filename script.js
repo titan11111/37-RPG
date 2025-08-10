@@ -853,10 +853,9 @@ let touchStartY = 0;
 document.getElementById('gameArea').addEventListener('touchstart', function(e) {
     if (gameState.currentScreen !== 'gameScreen') return;
     if (gameState.inBattle) return;
-    
+
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
-    e.preventDefault();
 });
 
 document.getElementById('gameArea').addEventListener('touchend', function(e) {
@@ -888,8 +887,6 @@ document.getElementById('gameArea').addEventListener('touchend', function(e) {
             }
         }
     }
-    
-    e.preventDefault();
 });
 
 // ダブルタップでイベントチェック

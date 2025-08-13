@@ -355,8 +355,8 @@ html, body {
 }
 
 .enemy-image {
-  width: 120px;
-  height: 120px;
+  width: 240px;
+  height: 240px;
   object-fit: contain;
   margin-bottom: 10px;
   animation: enemyShake 1s ease-in-out infinite;
@@ -580,8 +580,8 @@ html, body {
   }
   
   .enemy-image {
-      width: 100px;
-      height: 100px;
+      width: 200px;
+      height: 200px;
   }
   
   .town {
@@ -614,8 +614,8 @@ html, body {
   }
   
   .enemy-image {
-      width: 80px;
-      height: 80px;
+      width: 160px;
+      height: 160px;
   }
   
   .building {
